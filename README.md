@@ -25,7 +25,7 @@ It shows the following information:-<br/>
 .Pressure <br/>
 <br/>
 .Wind speed in km/hr<br/>
-.Wind spedd in miles/hr<br/>
+.Wind speed in miles/hr<br/>
 .Wind direction<br/>
 .Wind degree<br/>
 <br/>
