@@ -1,21 +1,19 @@
-const options = {
+const options = {  // options -object which mentions which request it is - 'GET'(fetch) or 'POST'(upload)
     method: 'GET',
-    // headers: {
-    //     'X-RapidAPI-Key': 'ce81e7b4abmshbd4675fe84fe8afp1c477djsn82992a1bfc13',
-    //     'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-    // }
 };
+
 //api returns results in form of object containing all weather reports
-const getWeather = (city) => {
-    cityname.innerHTML = city
-    // fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city='+city, options)
-    fetch('http://api.weatherapi.com/v1/current.json?key=e8ec3627656642179ad172322222412&q=' + city, options)
-        .then(response => response.json())
-        .then(response => {
 
-            // cloud_pct.innerHTML = response.cloud_pct
+const getWeather = (city) => { // get weather- arrow function with parameter city 
+    cityname.innerHTML = city  //cityname =id in which name of city is stored
+    fetch('http://api.weatherapi.com/v1/current.json?key=e8ec3627656642179ad172322222412&q=' + city, options) //fetch function generating response from api url
+        .then(response => response.json()) //arrow function -response converting to json format
+         
+        // another arrow function
+        .then(response => {  
 
-
+        // feelslike_c =id in HTML where we store the response
+        // response is in form of object which contains another object-current inside which we have the data
             feelslike_c.innerHTML = response.current.feelslike_c
             gust_kph.innerHTML = response.current.gust_kph
             humidity.innerHTML = response.current.humidity
@@ -51,36 +49,23 @@ const getWeather = (city) => {
             //       wind_kph.innerHTML = response.current.wind_kph
             //       wind_mph.innerHTML = response.current.wind_mph
 
-
-            // temp.innerHTML = response.temp
-            // feels_like.innerHTML = response.feels_like
-            // humidity.innerHTML = response.humidity
-            // min_temp.innerHTML = response.min_temp
-            // max_temp.innerHTML = response.max_temp
-            // wind_speed.innerHTML = response.wind_speed
-            // wind_degrees.innerHTML = response.wind_degrees
-            // sunrise.innerHTML = response.sunrise
-            // sunset.innerHTML = response.sunset
-            // temp2.innerHTML=response.temp
-            // humidity2.innerHTML=response.humidity
-            // wind_speed2.innerHTML=response.wind_speed
-
-            console.log(response)
+            console.log(response)    //PRINTS RESPONSE IN CONSOLE SECTION
         })
-
-        .catch(err => console.error(err));
+        
+        .catch(err => console.error(err)); //if any error then catch
 }
 
-submit.addEventListener("click", (e) => {
+submit.addEventListener("click", (e) => {   //submit=id of button
     e.preventDefault() //prevents default reload
     getWeather(city.value) //when submit clicked check weather for a particular city
 })
 
 getWeather("Delhi")//BY DEFAULT CALLED FOR DELHI
 
-function displayTime() {
-    time = new Date();
-    console.log(time);
-    document.getElementById('time').innerHTML = time;
+//function to display time
+function displayTime() { 
+    time = new Date(); //generates current time
+    console.log(time); //prints time in console section
+    document.getElementById('time').innerHTML = time; //time=id in HTML where we store the time
 }
-setInterval(displayTime, 1000);
+setInterval(displayTime, 1000); //call same func after every 1s
